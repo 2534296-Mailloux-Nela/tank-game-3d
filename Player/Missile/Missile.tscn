@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://1vrcj80hfr3o"]
+
+[ext_resource type="PackedScene" uid="uid://djyjqgffqh0ab" path="res://AssetsTank/fbx/Bullet.fbx" id="1_sb7st"]
+[ext_resource type="Script" uid="uid://d3cm2sk080i2q" path="res://Player/Missile/missile.gd" id="1_ywmrq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ylkns"]
+radius = 0.046875
+height = 0.18554688
+
+[node name="Missile" type="CharacterBody3D" unique_id=1457627322]
+script = ExtResource("1_ywmrq")
+
+[node name="Bullet" parent="." unique_id=815377355 instance=ExtResource("1_sb7st")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.3162642e-09, 0, 0.07372311)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=567397191]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, -3.3162642e-09, -3.7564476e-09, -0.0021441728)
+shape = SubResource("CapsuleShape3D_ylkns")

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://xfrjplrx5b4f"]
 
 [ext_resource type="PackedScene" uid="uid://bgb8ij3pewcm" path="res://Player/player_tank.tscn" id="1_agsr3"]
+[ext_resource type="PackedScene" uid="uid://dmaffeh8c13ka" path="res://props/wall.tscn" id="2_uv0r8"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ylkns"]
 
@@ -21,3 +22,15 @@ mesh = SubResource("PlaneMesh_we67r")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1150254184]
 transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 7, 0)
+
+[node name="Wall" parent="." unique_id=810344296 instance=ExtResource("2_uv0r8")]
+transform = Transform3D(-4.37114e-08, 0, -5.5559897, 0, 1, 0, 1.0000002, 0, -2.4286e-07, 0.122612, 0.5, -4.765842)
+
+[node name="Wall3" parent="." unique_id=1044445460 instance=ExtResource("2_uv0r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 13.521944, 2.7419968, 0.5514828, 1.9172363)
+
+[node name="Wall4" parent="." unique_id=1960092620 instance=ExtResource("2_uv0r8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 13.521944, -2.2597885, 0.5514828, 1.9172363)
+
+[node name="Wall2" parent="." unique_id=1693351669 instance=ExtResource("2_uv0r8")]
+transform = Transform3D(-4.37114e-08, 0, -5.5559897, 0, 1, 0, 1.0000002, 0, -2.4286e-07, 0.122612, 0.5, 7.8188043)
