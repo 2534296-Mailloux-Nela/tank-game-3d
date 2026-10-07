@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://ctflgdwv0w614"]
 
-[ext_resource type="Texture2D" uid="uid://1ukp8771t327" path="res://AssetsTank/texture/MiniWar-Texture-512.png" id="1_4y3l1"]
+[ext_resource type="Texture2D" uid="uid://ovf4hg2vx14g" path="res://AssetsTank/texture/MiniWar-Texture-512.png" id="1_asbll"]
 
 [sub_resource type="Shader" id="Shader_4y3l1"]
 code = "shader_type spatial;
@@ -64,8 +64,8 @@ void fragment() {
 [resource]
 render_priority = 0
 shader = SubResource("Shader_4y3l1")
-shader_parameter/texture_albedo = ExtResource("1_4y3l1")
-shader_parameter/tank_color = 0
+shader_parameter/texture_albedo = ExtResource("1_asbll")
+shader_parameter/tank_color = 2
 shader_parameter/roughness = 1.0
 shader_parameter/metallic = 0.0
 shader_parameter/specular = 0.5
