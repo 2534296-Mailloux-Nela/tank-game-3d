@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bgb8ij3pewcm"]
+
+[ext_resource type="Script" uid="uid://b5uu468d5ix4a" path="res://Player/player_tank.gd" id="1_2jeh7"]
+[ext_resource type="PackedScene" uid="uid://diljhcn8uxhld" path="res://AssetsTank/fbx/ArmTank.fbx" id="1_7ed4d"]
+[ext_resource type="Material" uid="uid://bukq001bvbepe" path="res://particule/Smoke FX Lite Zip 5.25/SmokeFX Lite SpriteSheet 3A-3.tres" id="3_0o71w"]
+[ext_resource type="Material" uid="uid://dptne2diydagc" path="res://particule/Smoke FX Lite Zip 5.25/AnimationParticule3A-3.tres" id="3_we67r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2e6f5"]
+size = Vector3(0.47460938, 0.5107422, 0.7385254)
+
+[sub_resource type="QuadMesh" id="QuadMesh_cmj5w"]
+material = ExtResource("3_0o71w")
+size = Vector2(1.5, 1.5)
+
+[node name="PlayerTank" type="CharacterBody3D" unique_id=1777080976]
+script = ExtResource("1_2jeh7")
+
+[node name="Model3D" parent="." unique_id=1024408894 instance=ExtResource("1_7ed4d")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.0017089999, 0, 0.0669103)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1901116831]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.0008544843, 0.2446289, -0.020369977)
+shape = SubResource("BoxShape3D_2e6f5")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=548609693]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.001708961, 0.25347376, -0.37783694)
+visible = false
+gizmo_extents = 0.78
+
+[node name="ParticLeft" type="GPUParticles3D" parent="." unique_id=991005407]
+transform = Transform3D(0.9021557, 0, 0, 0, 1, 0, 0, 0, 1, -0.18485083, 0.13057601, 0.36308742)
+amount = 10
+interp_to_end = 0.23
+speed_scale = 0.75
+randomness = 0.25
+collision_base_size = 0.0
+transform_align = 1
+transform_align_channel_filter = 1
+process_material = ExtResource("3_we67r")
+draw_pass_1 = SubResource("QuadMesh_cmj5w")
+
+[node name="ParticRight" type="GPUParticles3D" parent="." unique_id=1950093904]
+transform = Transform3D(0.9021557, 0, 0, 0, 1, 0, 0, 0, 1, 0.17997803, 0.14144033, 0.3670262)
+amount = 10
+interp_to_end = 0.23
+speed_scale = 0.75
+randomness = 0.25
+collision_base_size = 0.0
+transform_align = 1
+transform_align_channel_filter = 1
+process_material = ExtResource("3_we67r")
+draw_pass_1 = SubResource("QuadMesh_cmj5w")

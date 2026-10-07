@@ -1,0 +1,71 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ctflgdwv0w614"]
+
+[ext_resource type="Texture2D" uid="uid://1ukp8771t327" path="res://AssetsTank/texture/MiniWar-Texture-512.png" id="1_4y3l1"]
+
+[sub_resource type="Shader" id="Shader_4y3l1"]
+code = "shader_type spatial;
+
+render_mode blend_mix, depth_draw_opaque, cull_back,
+	diffuse_burley, specular_schlick_ggx;
+
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+
+uniform int tank_color : hint_enum(
+	\"Vert\",
+	\"Bleu\",
+	\"Rouge\",
+	\"Orange\"
+) = 0;
+
+uniform float roughness : hint_range(0.0, 1.0) = 0.8;
+uniform float metallic : hint_range(0.0, 1.0) = 0.0;
+uniform float specular : hint_range(0.0, 1.0) = 0.5;
+
+varying vec2 uv3;
+varying vec2 uv4;
+
+
+void vertex() {
+	// Les UV supplémentaires du FBX
+	uv3 = CUSTOM0.xy;
+	uv4 = CUSTOM0.zw;
+}
+
+
+void fragment() {
+	vec2 selected_uv;
+
+	// Verde
+	if (tank_color == 0) {
+		selected_uv = UV;
+	}
+	// Azul
+	else if (tank_color == 1) {
+		selected_uv = UV2;
+	}
+	// Rojo
+	else if (tank_color == 2) {
+		selected_uv = uv3;
+	}
+	// Naranja
+	else {
+		selected_uv = uv4;
+	}
+
+	vec4 tex = texture(texture_albedo, selected_uv);
+
+	ALBEDO = tex.rgb;
+
+	ROUGHNESS = roughness;
+	METALLIC = metallic;
+	SPECULAR = specular;
+}"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_4y3l1")
+shader_parameter/texture_albedo = ExtResource("1_4y3l1")
+shader_parameter/tank_color = 0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.5

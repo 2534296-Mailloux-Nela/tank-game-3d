@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://xfrjplrx5b4f"]
+
+[ext_resource type="PackedScene" uid="uid://bgb8ij3pewcm" path="res://Player/player_tank.tscn" id="1_agsr3"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ylkns"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_we67r"]
+size = Vector2(20, 20)
+
+[node name="MapTeste" type="Node3D" unique_id=1444674249]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1902488362]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=323146695]
+shape = SubResource("WorldBoundaryShape3D_ylkns")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=402035359]
+mesh = SubResource("PlaneMesh_we67r")
+
+[node name="PlayerTank" parent="." unique_id=1777080976 instance=ExtResource("1_agsr3")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1150254184]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 7, 0)

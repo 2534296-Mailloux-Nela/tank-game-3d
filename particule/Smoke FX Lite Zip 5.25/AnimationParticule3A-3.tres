@@ -1,0 +1,5 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://dptne2diydagc"]
+
+[resource]
+anim_speed_min = 1.0
+anim_speed_max = 1.0

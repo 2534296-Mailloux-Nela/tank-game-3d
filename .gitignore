@@ -1,0 +1,17 @@
+cat > .gitignore <<'EOF'
+# Godot
+.godot/
+.import/
+*.import
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+
+# Export credentials
+export_credentials.cfg
+EOF
