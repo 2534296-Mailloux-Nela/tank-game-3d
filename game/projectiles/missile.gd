@@ -7,6 +7,8 @@ extends CharacterBody3D
 
 var direction: Vector3 = Vector3.ZERO
 var bounce_count := 0
+var flight_height := 0.0
+var is_height_locked := false
 
 var owner_tank: CollisionObject3D
 var projectile_material: Material
@@ -46,7 +48,16 @@ func _apply_material(node: Node, material: Material) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not is_height_locked:
+		flight_height = global_position.y
+		is_height_locked = true
+
+	direction.y = 0.0
+	if not direction.is_zero_approx():
+		direction = direction.normalized()
+
 	var collision := move_and_collide(direction * speed * delta)
+	global_position.y = flight_height
 
 	if collision:
 		bounce_count += 1
@@ -57,13 +68,11 @@ func _physics_process(delta: float) -> void:
 
 		direction = direction.bounce(
 			collision.get_normal()
-		).normalized()
+		)
+		direction.y = 0.0
+		direction = direction.normalized()
 
 	if direction.is_zero_approx():
 		return
 
-	var up_axis := Vector3.UP
-	if abs(direction.normalized().dot(Vector3.UP)) > 0.999:
-		up_axis = Vector3.FORWARD
-
-	look_at(global_position + direction, up_axis)
+	look_at(global_position + direction, Vector3.UP)
