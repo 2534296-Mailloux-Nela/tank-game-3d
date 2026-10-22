@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://ctflgdwv0w614"]
 
-[ext_resource type="Texture2D" uid="uid://ovf4hg2vx14g" path="res://AssetsTank/texture/MiniWar-Texture-512.png" id="1_asbll"]
+[ext_resource type="Texture2D" uid="uid://1ukp8771t327" path="res://assets/tank/textures/MiniWar-Texture-512.png" id="1_asbll"]
 
 [sub_resource type="Shader" id="Shader_4y3l1"]
 code = "shader_type spatial;

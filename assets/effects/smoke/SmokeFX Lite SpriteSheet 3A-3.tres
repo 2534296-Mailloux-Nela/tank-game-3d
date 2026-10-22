@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://bukq001bvbepe"]
 
-[ext_resource type="Texture2D" uid="uid://flmuawwusw61" path="res://particule/Smoke FX Lite Zip 5.25/SmokeFX Lite SpriteSheet 3A-3_CENTERED.png" id="1_ednsy"]
+[ext_resource type="Texture2D" uid="uid://flmuawwusw61" path="res://assets/effects/smoke/SmokeFX Lite SpriteSheet 3A-3_CENTERED.png" id="1_ednsy"]
 
 [sub_resource type="Shader" id="Shader_ednsy"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.7.2.stable's StandardMaterial3D.
