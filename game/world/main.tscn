@@ -2,19 +2,33 @@
 
 [ext_resource type="PackedScene" uid="uid://bgb8ij3pewcm" path="res://game/player/player_tank.tscn" id="1_agsr3"]
 [ext_resource type="PackedScene" uid="uid://dmaffeh8c13ka" path="res://game/world/wall.tscn" id="2_uv0r8"]
-[ext_resource type="Material" path="res://assets/tank/materials/tank_green.tres" id="3_green"]
-[ext_resource type="Material" path="res://assets/tank/materials/tank_blue.tres" id="4_blue"]
-[ext_resource type="Material" path="res://assets/tank/materials/tank_red.tres" id="5_red"]
-[ext_resource type="Material" path="res://assets/tank/materials/tank_orange.tres" id="6_orange"]
+[ext_resource type="Script" uid="uid://dteuwd1il8kjj" path="res://game/world/map_generator.gd" id="3_map_generator"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ylkns"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_we67r"]
 size = Vector2(20, 20)
 
-[node name="MapTeste" type="Node3D" unique_id=1444674249]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_goal"]
+albedo_color = Color(0.9, 0.15, 0.08, 1)
+emission_enabled = true
+emission = Color(0.45, 0.03, 0.01, 1)
 
-[node name="Projectiles" type="Node3D" parent="." groups=["projectile_container"]]
+[sub_resource type="CylinderMesh" id="CylinderMesh_goal"]
+material = SubResource("StandardMaterial3D_goal")
+top_radius = 0.65
+bottom_radius = 0.65
+height = 0.06
+
+[node name="MapTeste" type="Node3D" unique_id=1444674249]
+script = ExtResource("3_map_generator")
+wall_scene = ExtResource("2_uv0r8")
+player_path = NodePath("PlayerTank")
+goal_path = NodePath("Goal")
+
+[node name="GeneratedWalls" type="Node3D" parent="." unique_id=1098469691]
+
+[node name="Projectiles" type="Node3D" parent="." unique_id=34506695 groups=["projectile_container"]]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1902488362]
 
@@ -27,142 +41,13 @@ mesh = SubResource("PlaneMesh_we67r")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1150254184]
 transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 7, 0)
 
-[node name="Wall" parent="." unique_id=810344296 instance=ExtResource("2_uv0r8")]
-transform = Transform3D(-4.37114e-08, 0, -5.5559897, 0, 1, 0, 1.0000002, 0, -2.4286e-07, 0.122612, 0.5, -4.765842)
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1523098486]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0)
+projection = 1
+size = 21.0
 
-[node name="Wall3" parent="." unique_id=1044445460 instance=ExtResource("2_uv0r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 13.521944, 2.7419968, 0.5514828, 1.9172363)
-
-[node name="Wall4" parent="." unique_id=1960092620 instance=ExtResource("2_uv0r8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 13.521944, -2.2597885, 0.5514828, 1.9172363)
-
-[node name="Wall2" parent="." unique_id=1693351669 instance=ExtResource("2_uv0r8")]
-transform = Transform3D(-4.37114e-08, 0, -5.5559897, 0, 1, 0, 1.0000002, 0, -2.4286e-07, 0.122612, 0.5, 7.8188043)
+[node name="Goal" type="MeshInstance3D" parent="." unique_id=778734721]
+mesh = SubResource("CylinderMesh_goal")
 
 [node name="PlayerTank" parent="." unique_id=1777080976 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1109016, 0, 2.425123)
-tank_material = ExtResource("3_green")
-
-[node name="PlayerTank2" parent="." unique_id=250782533 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1109016, 0, 1.650105)
-tank_material = ExtResource("4_blue")
-
-[node name="PlayerTank3" parent="." unique_id=877087342 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1109016, 0, 0.878556)
-tank_material = ExtResource("5_red")
-
-[node name="PlayerTank4" parent="." unique_id=807922191 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1109016, 0, 0.10353804)
-tank_material = ExtResource("6_orange")
-
-[node name="PlayerTank5" parent="." unique_id=2073783196 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44611597, 0, 2.425123)
-tank_material = ExtResource("3_green")
-
-[node name="PlayerTank6" parent="." unique_id=1859272419 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44611597, 0, 1.650105)
-tank_material = ExtResource("4_blue")
-
-[node name="PlayerTank7" parent="." unique_id=1002617682 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44611597, 0, 0.878556)
-tank_material = ExtResource("5_red")
-
-[node name="PlayerTank8" parent="." unique_id=1888224548 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44611597, 0, 0.10353804)
-tank_material = ExtResource("6_orange")
-
-[node name="PlayerTank9" parent="." unique_id=1581166156 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1109016, 0.40022266, 2.425123)
-tank_material = ExtResource("3_green")
-
-[node name="PlayerTank10" parent="." unique_id=241404930 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1109016, 0.40022266, 1.650105)
-tank_material = ExtResource("4_blue")
-
-[node name="PlayerTank11" parent="." unique_id=617140054 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1109016, 0.40022266, 0.878556)
-tank_material = ExtResource("5_red")
-
-[node name="PlayerTank12" parent="." unique_id=1640228027 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1109016, 0.40022266, 0.10353804)
-tank_material = ExtResource("6_orange")
-
-[node name="PlayerTank13" parent="." unique_id=354407060 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44611597, 0.40022266, 2.425123)
-tank_material = ExtResource("3_green")
-
-[node name="PlayerTank14" parent="." unique_id=1922444988 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44611597, 0.40022266, 1.650105)
-tank_material = ExtResource("4_blue")
-
-[node name="PlayerTank15" parent="." unique_id=167185774 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44611597, 0.40022266, 0.878556)
-tank_material = ExtResource("5_red")
-
-[node name="PlayerTank16" parent="." unique_id=289843813 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44611597, 0.40022266, 0.10353804)
-tank_material = ExtResource("6_orange")
-
-[node name="PlayerTank17" parent="." unique_id=669422268 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29127675, 0.3603829, 2.425123)
-tank_material = ExtResource("3_green")
-
-[node name="PlayerTank18" parent="." unique_id=1640376668 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29127675, 0.3603829, 1.650105)
-tank_material = ExtResource("4_blue")
-
-[node name="PlayerTank19" parent="." unique_id=973965792 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29127675, 0.3603829, 0.878556)
-tank_material = ExtResource("5_red")
-
-[node name="PlayerTank20" parent="." unique_id=1235160724 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29127675, 0.3603829, 0.10353804)
-tank_material = ExtResource("6_orange")
-
-[node name="PlayerTank21" parent="." unique_id=44699102 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9560624, 0.3603829, 2.425123)
-tank_material = ExtResource("3_green")
-
-[node name="PlayerTank22" parent="." unique_id=897813683 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9560624, 0.3603829, 1.650105)
-tank_material = ExtResource("4_blue")
-
-[node name="PlayerTank23" parent="." unique_id=1835910497 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9560624, 0.3603829, 0.878556)
-tank_material = ExtResource("5_red")
-
-[node name="PlayerTank24" parent="." unique_id=246190806 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9560624, 0.3603829, 0.10353804)
-tank_material = ExtResource("6_orange")
-
-[node name="PlayerTank25" parent="." unique_id=1651106819 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29127675, 0.7606056, 2.425123)
-tank_material = ExtResource("3_green")
-
-[node name="PlayerTank26" parent="." unique_id=1406023757 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29127675, 0.7606056, 1.650105)
-tank_material = ExtResource("4_blue")
-
-[node name="PlayerTank27" parent="." unique_id=1161953309 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29127675, 0.7606056, 0.878556)
-tank_material = ExtResource("5_red")
-
-[node name="PlayerTank28" parent="." unique_id=2092714004 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29127675, 0.7606056, 0.10353804)
-tank_material = ExtResource("6_orange")
-
-[node name="PlayerTank29" parent="." unique_id=1784136084 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9560624, 0.7606056, 2.425123)
-tank_material = ExtResource("3_green")
-
-[node name="PlayerTank30" parent="." unique_id=1985481257 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9560624, 0.7606056, 1.650105)
-tank_material = ExtResource("4_blue")
-
-[node name="PlayerTank31" parent="." unique_id=1534787421 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9560624, 0.7606056, 0.878556)
-tank_material = ExtResource("5_red")
-
-[node name="PlayerTank32" parent="." unique_id=727976525 instance=ExtResource("1_agsr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9560624, 0.7606056, 0.10353804)
-tank_material = ExtResource("6_orange")
+transform = Transform3D(1.545, 0, 0, 0, 1.545, 0, 0, 0, 1.545, 0, 0.19333267, 0)

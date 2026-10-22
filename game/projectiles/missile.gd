@@ -60,6 +60,12 @@ func _physics_process(delta: float) -> void:
 	global_position.y = flight_height
 
 	if collision:
+		var collider := collision.get_collider()
+		if collider is Node and collider.is_in_group("tanks"):
+			collider.explode()
+			queue_free()
+			return
+
 		bounce_count += 1
 
 		if bounce_count >= max_bounces:

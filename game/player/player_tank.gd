@@ -24,6 +24,10 @@ func _apply_material(node: Node, material: Material) -> void:
 		_apply_material(child, material)
 
 
+func explode() -> void:
+	queue_free()
+
+
 func shoot() -> void:
 	var projectile_container := get_tree().get_first_node_in_group("projectile_container")
 	if projectile_container == null:
